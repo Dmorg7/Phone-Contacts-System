@@ -304,7 +304,7 @@ void dlist::dataupdate(char n[20])
                 case 2:
                     cout << "Enter New Number \n";
                     cin >> part->number;
-                    while (strlen(part->number) != 10)
+                    while (strlen(part->number) != 11)
                     {
                         cout << "Please Enter a Valid Number: \n";
                         cin >> part->number;
@@ -331,7 +331,7 @@ int main()
 {
     char n[20];
     char name[10];
-    char number[10];
+    char number[11];
     char email[20];
 
     dlist d1;
@@ -347,7 +347,7 @@ int main()
     d1.sort();
     do
     {
-        cout << "\n\n\n\n1) Contacts Details Display\n2) Add New Contact\n3) Update Contacts\n4) Delete Contact\n7) Search\n";
+        cout << "\n\n\n\n1) Contacts Details Display\n2) Add New Contact\n3) Update Contacts\n4) Delete Contact\n5) Search\n";
         cin >> ch;
         switch (ch)
         {
@@ -372,7 +372,7 @@ int main()
             cin >> name;
             d1.contactdelete(name);
             break;
-        case 7:
+        case 5:
             do
             {
                 cout << "1.Name Search\n2.Number Search\n3.Email Search\n";
