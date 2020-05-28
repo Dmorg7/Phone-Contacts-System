@@ -6,7 +6,7 @@ using namespace std;
 class dnode
 {
 public:
-    char name[40];
+    char name[40]; // declaring name, number, email as charater var 
     char number[40];
     char email[40];
 
@@ -28,7 +28,7 @@ public:
 
 class dlist
 {
-    dnode* top, * temp, * part;
+    dnode* top, * temp, * part; // nodes
 
     dnode* part1, * part2, * dro;
 
@@ -36,18 +36,18 @@ public:
     dnode* prevn;
 
     void insert();
-    void sort();
+    void sort(); // sorting algorithm
 
-    void namesearch(char ns[20]);
+    void namesearch(char ns[20]); // calling searching functions  
     void numbersearch(char nus[30]);
     void emailsearch(char es[20]);
 
     void contactdelete(char cd[20]);
     
  
-    void accept();
-    void detailsdisplay();
-    void dataupdate(char du[10]);
+    void accept(); // accept function, to accept a connection socket
+    void detailsdisplay(); // when called displays the inputed data
+    void dataupdate(char du[11]);
 
     dlist()
     {
@@ -67,7 +67,7 @@ public:
 
 void dlist::accept()
 {
-    char number[50];
+    char number[50]; // variables with character amount
     char email[40];
     char name[30];
     char ans;
@@ -88,7 +88,7 @@ void dlist::accept()
         cout << "Please Enter Contact Email Address: ";
         cin >> email;
 
-        temp = new dnode(name, number, email);
+        temp = new dnode(name, number, email); // stores the users input in the list
         if (top == NULL)
         {
             top = temp;
@@ -114,7 +114,7 @@ void dlist::accept()
 
 
 
-void dlist::detailsdisplay()
+void dlist::detailsdisplay() // displays the users inputs
 {
     part = top;
     while (part != NULL)
@@ -122,7 +122,7 @@ void dlist::detailsdisplay()
         cout << "\n\nName:\t" << part->name;
         cout << "\nNumber:\t" << part->number;
         cout << "\nEmail:\t" << part->email;
-        part = part->next;
+        part = part->next; // list gets moved forward
     }
 }
 
@@ -137,7 +137,7 @@ void dlist::insert()
 
 
 
-void dlist::sort()
+void dlist::sort() // sorting alogrithm in alphabetical order
 {
     dnode* i, * s;
     int temp;
@@ -163,7 +163,7 @@ void dlist::sort()
 
 
 
-void dlist::contactdelete(char s[20])
+void dlist::contactdelete(char s[20]) // deleting the contact infromation
 {
     int cd = 0;
     part = top;
@@ -186,7 +186,7 @@ void dlist::contactdelete(char s[20])
         part->prev->next = part->next;
         part->next->prev = part->prev;
         delete(part);
-        cout << "Contact Has Been Deleted\n\n";
+        cout << "Contact Has Been Deleted\n\n"; // searches through the list and removes previously inputted data
     }
 
     if (part == top)
@@ -207,7 +207,7 @@ void dlist::contactdelete(char s[20])
 
     if (cd == 2)
     {
-        cout << "Name Not Recognised";
+        cout << "Name Not Recognised"; // invalid input message
     }
 }
 
@@ -217,14 +217,14 @@ void dlist::contactdelete(char s[20])
 
 
 
-void dlist::namesearch(char na[10])
+void dlist::namesearch(char na[10]) // name search using user input
 {
     dro = top;
     while (dro != NULL)
     {
         if (strcmp(na, dro->name) == 0)
         {
-            cout << "Contact:\n" << endl;
+            cout << "Contact:\n" << endl; 
             cout << "\n\nName:\n" << dro->name;
             cout << "\nNumber:\n" << dro->number;
             cout << "\nEmail:\n" << dro->email;
@@ -237,7 +237,7 @@ void dlist::namesearch(char na[10])
 
 
 
-void dlist::numbersearch(char num[20])
+void dlist::numbersearch(char num[20]) // number search using user input
 {
     part = top;
     while (part != NULL)
@@ -258,7 +258,7 @@ void dlist::numbersearch(char num[20])
 
 
 
-void dlist::emailsearch(char em[20])
+void dlist::emailsearch(char em[20]) // email search using user input
 {
     part = top;
     while (part != NULL)
@@ -280,7 +280,7 @@ void dlist::emailsearch(char em[20])
 
 
 
-void dlist::dataupdate(char n[20])
+void dlist::dataupdate(char n[20]) // updating stored data
 {
     char ans;
     int du;
@@ -293,25 +293,25 @@ void dlist::dataupdate(char n[20])
 
             do
             {
-                cout << "\nUpdate a Contact\n1.Contact Name\n2.Contact Number\n3.Contact Email\n";
+                cout << "\nUpdate a Contact\n1.Contact Name\n2.Contact Number\n3.Contact Email\n"; // user should choose bewteen the number for their input
                 cin >> du;
                 switch (du)
                 {
                 case 1:
-                    cout << "Enter New Name: \n";
+                    cout << "Enter New Name: \n"; // Seraches for the contacts name and changes the data in the list using the users input
                     cin >> part->name;
                     break;
                 case 2:
-                    cout << "Enter New Number \n";
+                    cout << "Enter New Number \n"; // Seraches for the contacts number and changes the data in the list using the users input
                     cin >> part->number;
                     while (strlen(part->number) != 11)
                     {
-                        cout << "Please Enter a Valid Number: \n";
+                        cout << "Please Enter a Valid Number: \n"; // while loop for inputting a phone number in the correct number format (11 numbers)
                         cin >> part->number;
                     }
                     break;
                 case 3:
-                    cout << "Enter New Email: \n";
+                    cout << "Enter New Email: \n"; // Seraches for the contacts email and changes the data in the list using the users input
                     cin >> part->email;
                     break;
                 }
@@ -327,19 +327,19 @@ void dlist::dataupdate(char n[20])
 
 
 
-int main()
+int main() // main function/UI
 {
     char n[20];
     char name[10];
     char number[11];
     char email[20];
 
-    dlist d1;
-    char ans;
+    dlist d1; // 
+    char ans; // user input var
     int ch, a;
 
     cout << "********* Phone Contacts*********";
-    cout << "\n\nPlease Enter Your Name: \n";
+    cout << "\n\nPlease Enter Your Name: \n"; // User can enter their own name for welcome message purpose
     cin.getline(name, 20);
     cout << "\n\n!!!!!!!!!Welcome " << name << "!!!!!!!!";
 
@@ -347,7 +347,7 @@ int main()
     d1.sort();
     do
     {
-        cout << "\n\n\n\n1) Contacts Details Display\n2) Add New Contact\n3) Update Contacts\n4) Delete Contact\n5) Search\n";
+        cout << "\n\n\n\n1) Contacts Details Display\n2) Add New Contact\n3) Update Contacts\n4) Delete Contact\n5) Search\n"; // user input required for the systems section
         cin >> ch;
         switch (ch)
         {
@@ -357,8 +357,8 @@ int main()
             break;
 
         case 1:
-            // d1.sort();
-            d1.detailsdisplay();
+            d1.sort(); // sorting algorithm function
+            d1.detailsdisplay(); // display contacts
             break;
         case 3:
 
@@ -375,7 +375,7 @@ int main()
         case 5:
             do
             {
-                cout << "1.Name Search\n2.Number Search\n3.Email Search\n";
+                cout << "1.Name Search\n2.Number Search\n3.Email Search\n"; // seraching do while loop
                 cin >> a;
                 switch (a)
                 {
